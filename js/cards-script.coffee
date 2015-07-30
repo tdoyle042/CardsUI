@@ -12,8 +12,8 @@ $(document).ready ->
 		card = new Card card_elem, "Llama", "http://twistedrootburgerco.com/wp-content/uploads/Llama.jpg"
 		cards.push card
 
-	cards_global = new CardContainer $(".card-container"), cards
-	console.log cards.length
+	cards_global.card_container = new CardContainer $(".card-container"), cards
+	cards_global.card_container.setContainerWidth()
 	return;
 
 class Card
@@ -26,7 +26,7 @@ class CardContainer
 	constructor: (@elem, @cards) ->
 
 	setContainerWidth: ->
-		width = @cards.length * 251
-		@elem.width width
+		width = @cards.length * 252
+		@elem.width (width + 200)
 		return
 
