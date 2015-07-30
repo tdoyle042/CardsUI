@@ -1,6 +1,9 @@
 body, h1, h2, h3, h4, h5, h6, a, p {
   font-family: Helvetica, sans-serif; }
 
+body {
+  overflow: hidden; }
+
 .card-container {
   display: inline-block;
   position: absolute;
