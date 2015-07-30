@@ -25,17 +25,15 @@ class CardContainer
 	Set Up Application
 ###
 
-scrollHandler = (event) ->
-	console.log "Document was scroll"
+scrollHandler = (scrollEvent) ->
 	oldLeftMargin = parseInt ($(".card-container").first().css "margin-left"), 10
-	console.log oldLeftMargin
-	console.log typeof oldLeftMargin
-	$(".card-container").first().css "margin-left", oldLeftMargin - 5 + "px"
+	newLeftMargin = oldLeftMargin - scrollEvent.deltaY / 5
+	$(".card-container").first().css "margin-left", newLeftMargin + "px"
 	return
 
 $(document).ready ->
-	console.log "Page Ready"
-	
+
+	# Create a card for each DOM Card Element
 	cards = []
 
 	$(".card").each (card_elem) ->
@@ -45,7 +43,7 @@ $(document).ready ->
 	cards_global.card_container = new CardContainer $(".card-container"), cards
 	cards_global.card_container.setContainerWidth()
 
-	window.addEventListener "mousewheel", scrollHandler
+	window.addEventListener "wheel", scrollHandler
 	return
 
 

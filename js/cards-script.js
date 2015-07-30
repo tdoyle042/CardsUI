@@ -45,18 +45,15 @@ CardContainer = (function() {
 */
 
 
-scrollHandler = function(event) {
-  var oldLeftMargin;
-  console.log("Document was scroll");
+scrollHandler = function(scrollEvent) {
+  var newLeftMargin, oldLeftMargin;
   oldLeftMargin = parseInt($(".card-container").first().css("margin-left"), 10);
-  console.log(oldLeftMargin);
-  console.log(typeof oldLeftMargin);
-  $(".card-container").first().css("margin-left", oldLeftMargin - 5 + "px");
+  newLeftMargin = oldLeftMargin - scrollEvent.deltaY / 5;
+  $(".card-container").first().css("margin-left", newLeftMargin + "px");
 };
 
 $(document).ready(function() {
   var cards;
-  console.log("Page Ready");
   cards = [];
   $(".card").each(function(card_elem) {
     var card;
@@ -65,5 +62,5 @@ $(document).ready(function() {
   });
   cards_global.card_container = new CardContainer($(".card-container"), cards);
   cards_global.card_container.setContainerWidth();
-  window.addEventListener("mousewheel", scrollHandler);
+  window.addEventListener("wheel", scrollHandler);
 });
